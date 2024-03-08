@@ -3,11 +3,10 @@
 	imports =
 		[
 		./home-manager/home-manager-module.nix
-		./hardware-configuration.nix
 		];
 
 	# Bootloader.
-	boot.loader.grub.enable = true; # comment out if building iso
+	# boot.loader.grub.enable = true; # comment out if building iso
 	boot.loader.grub.device = "/dev/vda";
 	boot.loader.grub.useOSProber = true;
 
