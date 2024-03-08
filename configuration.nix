@@ -3,12 +3,11 @@
 	imports =
 		[
 		./home-manager/home-manager-module.nix
-		./system/nixos-generators.nix
 		./hardware-configuration.nix
 		];
 
 	# Bootloader.
-	boot.loader.grub.enable = true;
+	boot.loader.grub.enable = true; # comment out if building iso
 	boot.loader.grub.device = "/dev/vda";
 	boot.loader.grub.useOSProber = true;
 
@@ -44,7 +43,11 @@
 	services.xserver.enable = true;
 	
 	# Enable cinnamon desktop environment.
-	services.xserver.displayManager.lightdm.enable = true; # lightweight display manager, "greeters" for 
+	services.xserver.displayManager.lightdm={
+		enable = true; # lightweight display manager
+		autoLogin.enable=true;
+		autologin.user="chi";
+		};
 	services.xserver.desktopManager.cinnamon.enable = true;
 
 	# Configure keymap in X11
