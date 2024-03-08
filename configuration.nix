@@ -46,7 +46,7 @@
 	services.xserver.displayManager.lightdm={
 		enable = true; # lightweight display manager
 		autoLogin.enable=true;
-		autologin.user="chi";
+		autoLogin.user="chi";
 		};
 	services.xserver.desktopManager.cinnamon.enable = true;
 

@@ -53,8 +53,8 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 	home ={
-		username = "CHI";
-		homeDirectory = "/home/CHI";
+		username = "chi";
+		homeDirectory = "/home/chi";
 		# You should not change this value, even if you update Home Manager. If you do
 		# want to update the value, then make sure to first check the Home Manager
 		# release notes.
@@ -134,14 +134,8 @@ in
 		# BEGIN USER CONFIGS	
 		programs.git = {
 			enable = true;
-			userName = "CHI";
+			userName = "chi";
 			userEmail = "pleaseletmemakeanaccount123@proton.me";
-		};
-		openssh = {
-			enable = true;
-			authKeys = {
-				# "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDf"
-				};
 		};
 		# xdg-open is what gets called from open "file" in terminal
 		imports = [
