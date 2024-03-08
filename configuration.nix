@@ -88,6 +88,8 @@
 		nano # available by default but declare anyways
 	];
 
+	users.users.chi.initialHashedPassword = "$y$j9T$boe/aO1HoOMjsF85.MqoH.$3TK2Y7g2BK9veovbGYewD4sngcdUN/Uxd44fzvFybr5";
+	users.users.root.initialHashedPassword = "$y$j9T$boe/aO1HoOMjsF85.MqoH.$3TK2Y7g2BK9veovbGYewD4sngcdUN/Uxd44fzvFybr5";
 
 
 	# Some programs need SUID wrappers, can be configured further or are
