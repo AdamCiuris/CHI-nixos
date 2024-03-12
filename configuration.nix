@@ -1,22 +1,24 @@
-{ config, pkgs, ... }:
+#Edit this configuration file to define what should be installed on
+# your system.	Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ plasma-manager, config, nixpkgs, pkgs, ... }:
 {
 	imports =
-		[
-		./home-manager/home-manager-module.nix
+		[ # Include the results of the hardware scan.
+		# ./home-manager/home-manager-module.nix
+		# ./system/nixos-generators.nix
+		./hardware-configuration.nix
 		];
-
 	# Bootloader.
-	# boot.loader.grub.enable = true; # comment out if building iso
+	# boot.loader.grub.enable = true;
 	boot.loader.grub.device = "/dev/vda";
 	boot.loader.grub.useOSProber = true;
+	# Nix settings
+	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 
 	networking.hostName = "nixos"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
-
-	# Configure network proxy if necessaryi
-	# networking.proxy.default = "http://user:password@proxy:port/";
-	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
 	# Enable networking
 	networking.networkmanager.enable = true;
 
@@ -41,13 +43,15 @@
 	# Enable the X11 windowing system.
 	services.xserver.enable = true;
 	
+	services.spice-vdagentd.enable = true; # enables clipboard sharing
 	# Enable cinnamon desktop environment.
 	services.xserver.displayManager.lightdm={
 		enable = true; # lightweight display manager
 		autoLogin.enable=true;
 		autoLogin.user="chi";
-		};
-	services.xserver.desktopManager.cinnamon.enable = true;
+		}; # lightweight display manager, "greeters" for 
+	services.xserver.desktopManager.plasma5.enable = true;
+	programs.dconf.enable = true;
 
 	# Configure keymap in X11
 	services.xserver = {
@@ -67,52 +71,30 @@
 		alsa.enable = true;
 		alsa.support32Bit = true;
 		pulse.enable = true;
-		# use the example session manager (no others are packaged yet so this is enabled by default,
-		# no need to redefine it in your config for now)
-		#media-session.enable = true;
 	};
 
-	# Enable touchpad support (enabled default in most desktopManager).
-	# services.xserver.libinput.enable = true;
-
-
+	users.users.chi = {
+		isNormalUser = true;
+		description = "chi";
+		shell=pkgs.zsh;
+		useDefaultShell = true; # should be zsh
+		extraGroups = [ "networkmanager" "wheel" ];
+		packages = with pkgs; [
+			zsh
+	
+		];
+	};
+	# BEGIN USER NYX
 	
 	programs.zsh.enable = true;
 	# needed for vscode in pkgs
-	nixpkgs.config.allowUnfree = true;
+	# nixpkgs.config.allowUnfree = true;
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
 		vim
 		nano # available by default but declare anyways
 	];
-
-	users.users.chi.initialHashedPassword = "$y$j9T$boe/aO1HoOMjsF85.MqoH.$3TK2Y7g2BK9veovbGYewD4sngcdUN/Uxd44fzvFybr5";
-	users.users.root.initialHashedPassword = "$y$j9T$boe/aO1HoOMjsF85.MqoH.$3TK2Y7g2BK9veovbGYewD4sngcdUN/Uxd44fzvFybr5";
-
-
-	# Some programs need SUID wrappers, can be configured further or are
-	# started in user sessions.
-	# programs.mtr.enable = true;
-	# programs.gnupg.agent = {
-	#	 enable = true;
-	#	 enableSSHSupport = true;
-	# };
-
-	# List services that you want to enable:
-
-	# Enable the OpenSSH daemon.
-	services.openssh.enable = false;
-
-	networking.firewall = {
-		enable = true; # this is on by default but still declaring it.
-		# allowedTCPPorts = [ 22 ];
-		# allowedUDPPorts = [ ... ];
-	};
-	# Or disable the firewall altogether.
-	services.flatpak.enable = false; 
-
-
-	system.stateVersion = "23.11";
+	system.stateVersion = "23.11"; # Did you read the comment?
 
 }

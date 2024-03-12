@@ -7,7 +7,7 @@
   imageViewer = ["gimp"];
   videoPlayer = ["vlc"];
   audioPlayer = ["vlc"];
-  scriptViewer = ["libreoffice"];
+  textViewer = ["libreoffice"];
 
   xdgAssociations = type: program: list:
     builtins.listToAttrs (map (e: {

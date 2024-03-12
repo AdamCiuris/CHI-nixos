@@ -5,10 +5,10 @@ sudo rm -rf /etc/nixos/*
 
 # Hardlink this repo into there.
 sudo mkdir /etc/nixos/home-manager && sudo mkdir /etc/nixos/home-manager/configs && \
-sudo ln -fn ./configuration.nix /etc/nixos && \
+sudo ln -fn $(find ./ -maxdepth 1 -type f -name "*.nix") /etc/nixos && \
 sudo ln -fn $(find home-manager/ -maxdepth 1 -type f -name "*.nix") /etc/nixos/home-manager && \
 sudo ln -fn $(find home-manager/configs -maxdepth 1 -type f -name "*.nix") /etc/nixos/home-manager/configs && \
 sudo nixos-generate-config # to get your hardware config back
 
 # rebuild and switch
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --show-trace --print-build-logs
