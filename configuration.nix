@@ -83,6 +83,7 @@
 				initialHashedPassword="$y$j9T$qhPMNns01CkMEoPsVUSsv/$xmo.lUiUrxdp1eOyrTBonhgGFWhGyNPDr8my3LCz.E0";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
+				isSystemUser = true;
 			}; 
 			chi = {
 				isNormalUser = true;
@@ -98,8 +99,6 @@
 			};
 		};
 	};
-	# BEGIN USER NYX
-	
 	programs.zsh.enable = true;
 	# needed for vscode in pkgs
 	# nixpkgs.config.allowUnfree = true;
