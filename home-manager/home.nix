@@ -100,8 +100,8 @@ in
 		# BEGIN USER CONFIGS	
 		programs.git = {
 			enable = true;
-			userName = "Adam Ciuris";
-			userEmail = "adamciuris@gmail.com";
+			userName = "throw away";
+			userEmail = "pleaseletmemakeanaccount123@proton.me";
 		};
 		# START VSCODE
 		programs.vscode = {

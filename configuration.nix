@@ -64,10 +64,38 @@
 
 	# Enable CUPS to print documents.
 	services.printing.enable = true;
+	# MORE PRINTER STUFF
+	services.avahi = {
+		enable = true;
+		# Whether to run the Avahi daemon, which allows Avahi clients to use Avahi’s service discovery facilities and also allows the local machine to advertise its presence and services (through the mDNS responder implemented by avahi-daemon).
+		nssmdns = true;
+		openFirewall = true;
+	};
+	# hardware.printers = {
+		# ensurePrinters = [
+		# 	{
+		# 		name = "Dell_1250c";
+		# 		location = "Home";
+		# 		deviceUri = "http://192.168.178.2:631/printers/Dell_1250c";
+		# 		model = "drv:///sample.drv/generic.ppd";
+		# 		ppdOptions = {
+		# 			PageSize = "A4";
+		# 		};
+		# 	}
+		# ];
+		# # ensureDefaultPrinter = "Dell_1250c";
+	# };
 
+
+
+
+	
 	# Enable sound with pipewire.
 	sound.enable = true;
-	hardware.pulseaudio.enable = false;
+  hardware.pulseaudio = {
+    enable = true; #Enabling extra codecs, see https://nixos.wiki/wiki/Bluetooth
+    package = pkgs.pulseaudioFull;
+  };
 	security.rtkit.enable = true;
 	services.pipewire = {
 		enable = true;
@@ -75,6 +103,19 @@
 		alsa.support32Bit = true;
 		pulse.enable = true;
 	};
+	# https://nixos.wiki/wiki/Bluetooth
+	# START BLUETOOTH
+	hardware.bluetooth= {
+		enable = true; # enables support for Bluetooth
+		settings = {
+			General = {
+				Enable = "Source,Sink,Media,Socket"; # Enabling A2DP Sink
+			};
+		};
+	};
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+	services.blueman.enable = true;
+	# END BLUETOOTH
 
 	users ={
 		mutableUsers = true;
