@@ -140,6 +140,10 @@
 			};
 		};
 	};
+	security.pam.services.kwallet = {
+  name = "kwallet";
+  enableKwallet = false;
+};
 	programs.zsh.enable = true;
 	# needed for vscode in pkgs
 	# nixpkgs.config.allowUnfree = true;
