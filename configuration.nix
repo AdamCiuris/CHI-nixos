@@ -45,11 +45,14 @@
 	
 	services.spice-vdagentd.enable = true; # enables clipboard sharing
 	# Enable cinnamon desktop environment.
-	services.xserver.displayManager.lightdm={
+	services.xserver.displayManager.sddm ={
 		enable = true; # lightweight display manager
-		autoLogin.enable=true;
-		autoLogin.user="chi";
-		}; # lightweight display manager, "greeters" for 
+		autoLogin = {
+			enable=true;
+			user="chi";
+			relogin = true;
+			};
+	}; # lightweight display manager, "greeters" for 
 	services.xserver.desktopManager.plasma5.enable = true;
 	programs.dconf.enable = true;
 
@@ -73,16 +76,27 @@
 		pulse.enable = true;
 	};
 
-	users.users.chi = {
-		isNormalUser = true;
-		description = "chi";
-		shell=pkgs.zsh;
-		useDefaultShell = true; # should be zsh
-		extraGroups = [ "networkmanager" "wheel" ];
-		packages = with pkgs; [
-			zsh
-	
-		];
+	users ={
+		mutableUsers = true;
+		users= {
+			root = {
+				initialHashedPassword="$y$j9T$qhPMNns01CkMEoPsVUSsv/$xmo.lUiUrxdp1eOyrTBonhgGFWhGyNPDr8my3LCz.E0";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+			}; 
+			chi = {
+				isNormalUser = true;
+				description = "chi";
+				initialHashedPassword = "$y$j9T$Fj7uE/Bbwy/Zk18712MCw1$UjvkW7f2p709pqW8.B.Hor7A4HezmEHAHQ.8.LDTkSD";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+				# extraGroups = [ "networkmanager" "wheel" ];
+				packages = with pkgs; [
+					zsh
+			
+				];
+			};
+		};
 	};
 	# BEGIN USER NYX
 	
