@@ -55,6 +55,19 @@
 	}; # lightweight display manager, "greeters" for 
 	services.xserver.desktopManager.plasma5.enable = true;
 	programs.dconf.enable = true;
+	# remote
+	services.xrdp = {
+		enable = true;
+		port = 8181; 
+		openFirewall=true;
+
+		
+
+	};
+	# reminder you need to run this as root to delete generations from EFI
+	# user one is just profiles and home-manager, i think
+	nix.gc.automatic = true;
+	nix.gc.automaticOptions = "--delete-older-than 5d";
 
 	# Configure keymap in X11
 	services.xserver = {
