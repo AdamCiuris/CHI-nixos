@@ -67,7 +67,7 @@
 	# reminder you need to run this as root to delete generations from EFI
 	# user one is just profiles and home-manager, i think
 	nix.gc.automatic = true;
-	nix.gc.automaticOptions = "--delete-older-than 5d";
+	nix.gc.options = "--delete-older-than 1d";
 
 	# Configure keymap in X11
 	services.xserver = {
