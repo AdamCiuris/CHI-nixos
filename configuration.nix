@@ -147,7 +147,7 @@
 				initialHashedPassword = "$y$j9T$Fj7uE/Bbwy/Zk18712MCw1$UjvkW7f2p709pqW8.B.Hor7A4HezmEHAHQ.8.LDTkSD";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
-				# extraGroups = [ "networkmanager" "wheel" ];
+				extraGroups = [ "wheel" ];
 				packages = with pkgs; [
 					zsh
 			
