@@ -12,8 +12,10 @@
 		];
 	# Bootloader.
 	# boot.loader.grub.enable = true;
-	boot.loader.grub.device = "/dev/vda";
-	boot.loader.grub.useOSProber = true;
+	# boot.loader.grub.device = "/dev/vda";
+	# boot.loader.grub.useOSProber = true;
+	boot.loader.systemd-boot.enable = true;
+	boot.loader.efi.canTouchEfiVariables = true;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 
