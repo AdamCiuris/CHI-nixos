@@ -88,13 +88,12 @@ in
 			libreoffice
 			htop
 			git
-			vscode
 			# does bootloader.grub.enable = true always have to be commented out for iso gen
-			nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
 			gimp
 			vlc
 			zsh
 			xdg-utils
+			x2g0
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	
